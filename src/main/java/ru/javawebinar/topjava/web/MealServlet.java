@@ -22,7 +22,7 @@ public class MealServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("redirect to meals");
 
-        List<MealTo> result = MealsUtil.filteredByCalories(MealDao.getAll(), 600);
+        List<MealTo> result = MealsUtil.filteredByCalories(MealDao.getAll(), 2000);
         request.setAttribute("meals", result);
         request.getRequestDispatcher("meals.jsp").forward(request, response);
 //        response.sendRedirect("meals.jsp");
