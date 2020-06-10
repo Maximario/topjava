@@ -1,8 +1,9 @@
 package ru.javawebinar.topjava.web;
 
 import org.slf4j.Logger;
-import ru.javawebinar.topjava.dao.MealDao;
 import ru.javawebinar.topjava.model.MealTo;
+import ru.javawebinar.topjava.repository.MealRepository;
+import ru.javawebinar.topjava.repository.MemoryMealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 
 import javax.servlet.ServletException;
@@ -17,13 +18,15 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 
 public class MealServlet extends HttpServlet {
+
+    private static final MealRepository repository = MemoryMealRepository.getInstance();
     private static final Logger log = getLogger(MealServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("redirect to meals");
 
-        List<MealTo> result = MealsUtil.filteredByStreams(MealDao.getAll(), LocalTime.MIN, LocalTime.MAX, 2000);
+        List<MealTo> result = MealsUtil.filteredByStreams(repository.getAll(), LocalTime.MIN, LocalTime.MAX, 2000);
         request.setAttribute("meals", result);
         request.getRequestDispatcher("meals.jsp").forward(request, response);
 //        response.sendRedirect("meals.jsp");

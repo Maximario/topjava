@@ -16,12 +16,15 @@
 <h3><a href="index.html">Home</a></h3>
 <hr>
 <h2>Meals</h2>
+<p><a href="meal">Добавить прием пищи</a></p>
 <table>
     <thead>
         <tr align="center" style="font-weight: bold;">
+            <td></td>
             <td>Время</td>
             <td>Описание</td>
             <td>Калории</td>
+            <td></td>
         </tr>
     </thead>
     <tbody>
@@ -35,9 +38,11 @@
                 </c:otherwise>
             </c:choose>
             <tr bgcolor="${mealColor}">
+                <td><a href="meal?id=${meal.id}">Изменить</a></td>
                 <td><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd HH:mm" /></td>
                 <td><c:out value="${meal.description}" /></td>
                 <td><c:out value="${meal.calories}" /></td>
+                <td><a href="meal?id=${meal.id}&action=delete">Удалить</a></td>
             </tr>
         </c:forEach>
     </tbody>
