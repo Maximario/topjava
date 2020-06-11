@@ -29,15 +29,7 @@
     </thead>
     <tbody>
         <c:forEach var="meal" items="${meals}">
-            <c:choose>
-                <c:when test="${meal.excess}">
-                    <c:set var="mealColor" value="red" />
-                </c:when>
-                <c:otherwise>
-                    <c:set var="mealColor" value="green" />
-                </c:otherwise>
-            </c:choose>
-            <tr bgcolor="${mealColor}">
+            <tr style="color: ${meal.excess ? 'red' : 'green'};">
                 <td><a href="meal?id=${meal.id}">Изменить</a></td>
                 <td><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd HH:mm" /></td>
                 <td><c:out value="${meal.description}" /></td>
