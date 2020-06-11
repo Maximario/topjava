@@ -29,6 +29,7 @@
     </thead>
     <tbody>
         <c:forEach var="meal" items="${meals}">
+            <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.model.MealTo" />
             <tr style="color: ${meal.excess ? 'red' : 'green'};">
                 <td><a href="meal?id=${meal.id}">Изменить</a></td>
                 <td><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd HH:mm" /></td>
