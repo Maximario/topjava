@@ -13,8 +13,8 @@
     <!-- Invoke 'Generate' action to add tags or functions -->
     <function>
         <name>dateTimeFormat</name>
-        <function-class>ru.javawebinar.topjava.util</function-class>
-        <function-signature></function-signature>
+        <function-class>ru.javawebinar.topjava.util.TimeUtil</function-class>
+        <function-signature>java.lang.String toString(java.time.LocalDateTime)</function-signature>
     </function>
 
 </taglib>
