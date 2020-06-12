@@ -1,4 +1,4 @@
-<%--
+<%@ page import="ru.javawebinar.topjava.util.TimeUtil" %><%--
   Created by IntelliJ IDEA.
   User: mgrevtsov
   Date: 09.06.2020
@@ -11,12 +11,16 @@
 <html>
 <head>
     <title>Meals</title>
+    <style type="text/css">
+        .normal { color: green; }
+        .exceed { color: red; }
+    </style>
 </head>
 <body>
 <h3><a href="index.html">Home</a></h3>
 <hr>
 <h2>Meals</h2>
-<p><a href="meal">Добавить прием пищи</a></p>
+<p><a href="meal?action=create">Добавить прием пищи</a></p>
 <table>
     <thead>
         <tr align="center" style="font-weight: bold;">
@@ -30,12 +34,15 @@
     <tbody>
         <c:forEach var="meal" items="${meals}">
             <jsp:useBean id="meal" scope="page" type="ru.javawebinar.topjava.model.MealTo" />
-            <tr style="color: ${meal.excess ? 'red' : 'green'};">
-                <td><a href="meal?id=${meal.id}">Изменить</a></td>
-                <td><javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd HH:mm" /></td>
-                <td><c:out value="${meal.description}" /></td>
-                <td><c:out value="${meal.calories}" /></td>
-                <td><a href="meal?id=${meal.id}&action=delete">Удалить</a></td>
+            <tr class="${meal.excess ? 'exceed' : 'normal'}">
+                <td><a href="meal?action=update&id=${meal.id}">Изменить</a></td>
+                <td>
+<%--                    <javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd HH:mm" />--%>
+                    <%=TimeUtil.toString(meal.getDateTime())%>
+                </td>
+                <td>${meal.description}</td>
+                <td>${meal.calories}</td>
+                <td><a href="meal?action=delete&id=${meal.id}">Удалить</a></td>
             </tr>
         </c:forEach>
     </tbody>
