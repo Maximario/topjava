@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="javatime" uri="http://sargue.net/jsptags/time" %>
+<%@ taglib prefix="cf" uri="/WEB-INF/tld/functions" %>
 <html>
 <head>
     <title>Meals</title>
@@ -38,7 +39,8 @@
                 <td><a href="meal?action=update&id=${meal.id}">Изменить</a></td>
                 <td>
 <%--                    <javatime:format value="${meal.dateTime}" pattern="yyyy-MM-dd HH:mm" />--%>
-                    <%=TimeUtil.toString(meal.getDateTime())%>
+<%--                    <%=TimeUtil.toString(meal.getDateTime())%>--%>
+                    ${cf:dateTimeFormat(meal.dateTime)}
                 </td>
                 <td>${meal.description}</td>
                 <td>${meal.calories}</td>
