@@ -8,8 +8,8 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.util.UsersUtil;
 
-import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,7 +22,7 @@ public class InMemoryUserRepository implements UserRepository {
     private AtomicInteger counter = new AtomicInteger(0);
 
     {
-        UsersUtil.USERS.forEach(this::save);
+        UsersUtil.USERS.forEach(user -> save(user));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public Collection<User> getAll() {
+    public List<User> getAll() {
         log.info("getAll");
         return repository.values().stream()
                 .sorted(Comparator.comparing(AbstractNamedEntity::getName))

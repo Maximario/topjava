@@ -21,13 +21,20 @@ import static ru.javawebinar.topjava.util.DateTimeUtil.isBetweenHalfOpen;
 
 public class MealsUtil {
     public static final List<Meal> MEALS = Arrays.asList(
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500),
-            new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410)
+        new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500),
+        new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000),
+        new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500),
+        new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100),
+        new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000),
+        new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500),
+        new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410),
+        new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 30, 11, 0), "Завтрак", 500),
+        new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 30, 14, 0), "Обед", 1000),
+        new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 30, 21, 0), "Ужин", 500),
+        new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100),
+        new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 31, 11, 0), "Завтрак", 1000),
+        new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 31, 14, 0), "Обед", 500),
+        new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 31, 21, 0), "Ужин", 410)
     );
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -279,5 +286,9 @@ public class MealsUtil {
 
     private static MealTo createTo(Meal meal, boolean excess) {
         return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+    }
+
+    public static List<MealTo> getTos(List<Meal> all, int defaultCaloriesPerDay) {
+        return filteredByStreams(all, LocalTime.MIN, LocalTime.MAX, defaultCaloriesPerDay);
     }
 }
