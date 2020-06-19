@@ -67,10 +67,10 @@ public class MealServlet extends HttpServlet {
         String endTime = request.getParameter("endTime");
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm");
-        LocalDate sDate = startDate.isEmpty() ? LocalDate.MIN : LocalDate.parse(startDate, dateFormatter);
-        LocalDate eDate = endDate.isEmpty() ? LocalDate.MAX : LocalDate.parse(endDate, dateFormatter);
-        LocalTime sTime = startTime.isEmpty() ? LocalTime.MIN : LocalTime.parse(startTime, timeFormatter);
-        LocalTime eTime = endTime.isEmpty() ? LocalTime.MIN : LocalTime.parse(endTime, timeFormatter);
+        LocalDate sDate = startDate == null || startDate.isEmpty() ? LocalDate.MIN : LocalDate.parse(startDate, dateFormatter);
+        LocalDate eDate = endDate == null || endDate.isEmpty() ? LocalDate.MAX : LocalDate.parse(endDate, dateFormatter);
+        LocalTime sTime = startTime == null || startTime.isEmpty() ? LocalTime.MIN : LocalTime.parse(startTime, timeFormatter);
+        LocalTime eTime = endTime == null || endTime.isEmpty() ? LocalTime.MAX : LocalTime.parse(endTime, timeFormatter);
         LocalDateTime startDateTime = LocalDateTime.of(sDate, sTime);
         LocalDateTime endDateTime = LocalDateTime.of(eDate, eTime);
 
