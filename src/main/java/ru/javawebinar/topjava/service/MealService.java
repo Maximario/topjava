@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
@@ -24,6 +27,10 @@ public class MealService {
     public Meal get(int id, int userId) { return checkNotFoundWithId(repository.get(id, userId), id); }
 
     public List<Meal> getAll(int userId) { return repository.getAll(userId); }
+
+    public List<Meal> getFilteredByDateTime(int userId, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return repository.getByDateTime(userId, startDateTime, endDateTime);
+    };
 
     public void update(Meal meal, int userId) { checkNotFoundWithId(repository.save(meal, userId), meal.getId()); }
 }

@@ -21,6 +21,33 @@
     <h3><a href="index.html">Home</a></h3>
     <hr/>
     <h2>Meals</h2>
+    <hr />
+    <form id="filter">
+        <table>
+            <tr>
+                <td class="offset-1 col-2">
+                    <label for="startDate">От даты (включая)</label>
+                    <input type="date" name="startDate" id="startDate" autocomplete="off">
+                </td>
+                <td class="col-2">
+                    <label for="endDate">До даты (включая)</label>
+                    <input type="date" name="endDate" id="endDate" autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <td class="offset-2 col-2">
+                    <label for="startTime">От времени (включая)</label>
+                    <input type="time" name="startTime" id="startTime" autocomplete="off">
+                </td>
+                <td class="col-2">
+                    <label for="endTime">До времени (исключая)</label>
+                    <input type="time" name="endTime" id="endTime" autocomplete="off">
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Найти</button>
+    </form>
+    <hr />
     <a href="meals?action=create">Add Meal</a>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
