@@ -13,17 +13,18 @@ import ru.javawebinar.topjava.web.SecurityUtil;
 import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
 public class MealRestController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    private MealService service;
+    private final MealService service;
+
+    public MealRestController(MealService service) {
+        this.service = service;
+    }
 
     public List<MealTo> getAll() {
         log.info("Get all");
