@@ -17,9 +17,12 @@ import java.util.stream.Stream;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
-import static ru.javawebinar.topjava.util.TimeUtil.isBetweenHalfOpen;
+import static ru.javawebinar.topjava.util.Util.isBetweenHalfOpen;
 
 public class MealsUtil {
+
+    public static final int DEFAULT_CALORIES_PER_DAY = 2000;
+
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         List<Meal> meals = Arrays.asList(
                 new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500),
@@ -222,7 +225,7 @@ public class MealsUtil {
         Predicate<Boolean> predicate = b -> true;
         for (Meal meal : meals) {
             caloriesSumByDate.merge(meal.getDateTime().toLocalDate(), meal.getCalories(), Integer::sum);
-            if (TimeUtil.isBetweenHalfOpen(meal.getDateTime().toLocalTime(), startTime, endTime)) {
+            if (Util.isBetweenHalfOpen(meal.getDateTime().toLocalTime(), startTime, endTime)) {
                 predicate = predicate.and(b -> mealsTo.add(createTo(meal, caloriesSumByDate.get(meal.getDateTime().toLocalDate()) > caloriesPerDay)));
             }
         }
@@ -277,6 +280,6 @@ public class MealsUtil {
     }
 
     private static MealTo createTo(Meal meal, boolean excess) {
-        return new MealTo(meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+        return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
 }
