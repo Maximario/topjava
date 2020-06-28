@@ -22,7 +22,11 @@ import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 public class MealRestController {
     private static final Logger log = LoggerFactory.getLogger(MealRestController.class);
 
-    private MealService service;
+    private final MealService service;
+
+    public MealRestController(MealService service) {
+        this.service = service;
+    }
 
     public Meal get(int id) {
         int userId = SecurityUtil.authUserId();
