@@ -1,31 +1,27 @@
 package ru.javawebinar.topjava.web;
 
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.repository.MealRepository;
-import ru.javawebinar.topjava.repository.inmemory.InMemoryMealRepository;
 
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.HashMap;
 
-import static ru.javawebinar.topjava.web.UserTestData.ADMIN_ID;
-import static ru.javawebinar.topjava.web.UserTestData.USER_ID;
+import static java.time.LocalDateTime.*;
+import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
 
 
 public class MealTestData {
 
-    public static final MealRepository MEALS = new InMemoryMealRepository();
+    public static final int NOT_FOUND_ID = 10;
+    public static final int MEAL1_ID = START_SEQ + 2;
+    public static final int ADMIN_ID = START_SEQ + 1;
+    public static final int USER_ID = START_SEQ;
 
-    static {
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 25, 10, 0), "Завтрак", 1000), USER_ID);
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 25, 14, 0), "Обед", 2000), USER_ID);
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 25, 20, 0), "Ужин", 2000), USER_ID);
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 26, 0, 0), "Поздний ужин", 1000), USER_ID);
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 26, 0, 0), "Завтрак админ", 500), ADMIN_ID);
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 26, 9, 0), "Завтрак админ", 500), ADMIN_ID);
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 26, 15, 0), "Обед админ", 500), ADMIN_ID);
-        MEALS.save(new Meal(LocalDateTime.of(2020, Month.JUNE, 26, 20, 0), "Ужин админ", 400), ADMIN_ID);
-    }
-
+    public static final Meal MEAL1 = new Meal(MEAL1_ID, of(2020, 6, 25, 10, 0), "Завтрак", 1000);
+    public static final Meal MEAL2 = new Meal(MEAL1_ID + 1, of(2020, 6, 25, 14, 0), "Обед", 2000);
+    public static final Meal MEAL3 = new Meal(MEAL1_ID + 2, of(2020, 6, 25, 20, 0), "Ужин", 2000);
+    public static final Meal MEAL4 = new Meal(MEAL1_ID + 3, of(2020, 6, 26, 00, 0), "Поздний ужин", 1000);
+    public static final Meal MEAL5 = new Meal(MEAL1_ID + 4, of(2020, 6, 26, 00, 0), "Завтрак Админ", 500);
+    public static final Meal MEAL6 = new Meal(MEAL1_ID + 5, of(2020, 6, 26, 9, 0), "Завтрак Админ", 500);
+    public static final Meal MEAL7 = new Meal(MEAL1_ID + 6, of(2020, 6, 26, 15, 0), "Обед Админ", 500);
+    public static final Meal MEAL8 = new Meal(MEAL1_ID + 7, of(2020, 6, 26, 20, 0), "Ужин Админ", 400);
 
 }
