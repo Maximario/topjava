@@ -82,7 +82,15 @@ public class MealServiceTest {
     }
 
     @Test
-    public void update() {
+    public void update() throws Exception {
+        Meal updated = getUpdated();
+        service.update(updated, USER_ID);
+        assertThat(service.get(MEAL1_ID, USER_ID)).isEqualTo(getUpdated());
+    }
+
+    @Test
+    public void updateNotOwn() throws Exception {
+        assertThrows(NotFoundException.class, () -> service.update(USER_MEAL1, ADMIN_ID));
     }
 
     @Test
