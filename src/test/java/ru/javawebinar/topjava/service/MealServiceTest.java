@@ -9,10 +9,10 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
-import ru.javawebinar.topjava.web.MealTestData;
+import ru.javawebinar.topjava.util.exception.NotFoundException;
+
 import static org.assertj.core.api.Assertions.assertThat;
-
-
+import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.web.MealTestData.*;
 
 @ContextConfiguration({
@@ -33,7 +33,17 @@ public class MealServiceTest {
     @Test
     public void get() {
         Meal actual = service.get(MEAL1_ID, USER_ID);
-        assertThat(actual).isEqualTo(MEAL1);
+        assertThat(actual).isEqualTo(USER_MEAL1);
+    }
+
+    @Test
+    public void getNotFound() {
+        assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND_ID, USER_ID));
+    }
+
+    @Test
+    public void getNotOwn() {
+        assertThrows(NotFoundException.class, () -> service.get(MEAL1_ID, ADMIN_ID));
     }
 
     @Test
