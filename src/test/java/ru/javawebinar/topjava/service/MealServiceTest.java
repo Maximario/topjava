@@ -27,9 +27,6 @@ public class MealServiceTest {
     @Autowired
     private MealService service;
 
-    @Autowired
-    private MealRepository repository;
-
     @Test
     public void get() {
         Meal actual = service.get(MEAL1_ID, USER_ID);
@@ -37,17 +34,23 @@ public class MealServiceTest {
     }
 
     @Test
-    public void getNotFound() {
+    public void getNotFound() throws Exception {
         assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND_ID, USER_ID));
     }
 
     @Test
-    public void getNotOwn() {
+    public void getNotOwn() throws Exception {
         assertThrows(NotFoundException.class, () -> service.get(MEAL1_ID, ADMIN_ID));
     }
 
     @Test
-    public void delete() {
+    public void delete() throws Exception {
+        service.delete(MEAL1_ID, USER_ID);
+        assertThrows(NotFoundException.class, () -> service.get(MEAL1_ID, USER_ID));
+    }
+
+    public void deleteNotFound() throws Exception {
+        assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND_ID, USER_ID));
     }
 
     @Test
