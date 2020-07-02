@@ -13,6 +13,7 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
@@ -62,21 +63,20 @@ public class MealServiceTest {
     }
 
     @Test
-    public void getBetweenInclusive() {
-    }
-
-
-    @Test
     public void getBetweenInclusive() throws Exception {
         assertThat(service.getBetweenInclusive(
-                LocalDate.of(2020, Month.JANUARY, 30),
-                LocalDate.of(2020, Month.JANUARY, 30), USER_ID),
-                MEAL3, MEAL2, MEAL1);
+                LocalDate.of(2020, Month.JUNE, 25),
+                LocalDate.of(2020, Month.JUNE, 25),
+                USER_ID))
+        .usingElementComparatorIgnoringFields(null)
+        .isEqualTo(Arrays.asList(USER_MEAL3, USER_MEAL2, USER_MEAL1));
     }
 
     @Test
     public void getBetweenWithNullDates() throws Exception {
-        MEAL_MATCHER.assertMatch(service.getBetweenInclusive(null, null, USER_ID), MEALS);
+        assertThat(service.getBetweenInclusive(null, null, USER_ID))
+                .usingElementComparatorIgnoringFields(null)
+                .isEqualTo(MEALS);
     }
 
     @Test
