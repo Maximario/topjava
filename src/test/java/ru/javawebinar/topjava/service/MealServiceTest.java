@@ -28,7 +28,7 @@ public class MealServiceTest {
     private MealService service;
 
     @Test
-    public void get() {
+    public void get() throws Exception {
         Meal actual = service.get(MEAL1_ID, USER_ID);
         assertThat(actual).isEqualTo(USER_MEAL1);
     }
@@ -49,8 +49,13 @@ public class MealServiceTest {
         assertThrows(NotFoundException.class, () -> service.get(MEAL1_ID, USER_ID));
     }
 
+    @Test
     public void deleteNotFound() throws Exception {
         assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND_ID, USER_ID));
+    }
+    @Test
+    public void deleteNotOwn() throws Exception {
+        assertThrows(NotFoundException.class, () -> service.delete(MEAL1_ID, ADMIN_ID));
     }
 
     @Test
