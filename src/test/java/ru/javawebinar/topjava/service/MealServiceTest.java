@@ -68,20 +68,17 @@ public class MealServiceTest {
                 LocalDate.of(2020, Month.JUNE, 25),
                 LocalDate.of(2020, Month.JUNE, 25),
                 USER_ID))
-        .usingElementComparatorIgnoringFields(null)
         .isEqualTo(Arrays.asList(USER_MEAL3, USER_MEAL2, USER_MEAL1));
     }
 
     @Test
     public void getBetweenWithNullDates() throws Exception {
-        assertThat(service.getBetweenInclusive(null, null, USER_ID))
-                .usingElementComparatorIgnoringFields(null)
-                .isEqualTo(MEALS);
+        assertThat(service.getBetweenInclusive(null, null, USER_ID)).isEqualTo(MEALS);
     }
 
     @Test
-    public void getAll() {
-        assertThat(service.getAll(USER_ID)).usingElementComparatorIgnoringFields(null).isEqualTo(MEALS);
+    public void getAll() throws Exception {
+        assertThat(service.getAll(USER_ID)).isEqualTo(MEALS);
     }
 
     @Test
