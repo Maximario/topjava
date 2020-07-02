@@ -11,6 +11,9 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.web.MealTestData.*;
@@ -60,6 +63,20 @@ public class MealServiceTest {
 
     @Test
     public void getBetweenInclusive() {
+    }
+
+
+    @Test
+    public void getBetweenInclusive() throws Exception {
+        assertThat(service.getBetweenInclusive(
+                LocalDate.of(2020, Month.JANUARY, 30),
+                LocalDate.of(2020, Month.JANUARY, 30), USER_ID),
+                MEAL3, MEAL2, MEAL1);
+    }
+
+    @Test
+    public void getBetweenWithNullDates() throws Exception {
+        MEAL_MATCHER.assertMatch(service.getBetweenInclusive(null, null, USER_ID), MEALS);
     }
 
     @Test
