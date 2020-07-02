@@ -64,6 +64,7 @@ public class MealServiceTest {
 
     @Test
     public void getAll() {
+        assertThat(service.getAll(USER_ID)).usingElementComparatorIgnoringFields(null).isEqualTo(MEALS);
     }
 
     @Test
