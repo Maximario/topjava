@@ -93,6 +93,13 @@ public class MealServiceTest {
     }
 
     @Test
-    public void create() {
+    public void create() throws Exception {
+        Meal created = service.create(getNew(), USER_ID);
+        int newId = created.getId();
+        Meal newMeal = getNew();
+        newMeal.setId(newId);
+        assertThat(created).isEqualTo(newMeal);
+        assertThat(service.get(newId, USER_ID)).isEqualTo(newMeal);
     }
+
 }
