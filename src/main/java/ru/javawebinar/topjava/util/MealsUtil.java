@@ -50,6 +50,9 @@ public class MealsUtil {
         System.out.println(filteredByCollector(meals, startTime, endTime, 2000));
     }
 
+    private MealsUtil() {
+    }
+
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
     public static List<MealTo> filteredByStreams(List<Meal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
