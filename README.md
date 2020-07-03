@@ -1,4 +1,5 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/31e3bb3f987e465d840eb514f92b3718)](https://www.codacy.com/manual/Maximario/topjava?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Maximario/topjava&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/Maximario/topjava.svg?branch=master)](https://travis-ci.org/Maximario/topjava)
 
 Java Enterprise Online Project 
 ===============================
